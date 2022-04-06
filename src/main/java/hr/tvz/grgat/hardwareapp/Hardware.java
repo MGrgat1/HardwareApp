@@ -11,11 +11,11 @@ public class Hardware {
 
     private Double price;
 
-    private String type;
+    private Type type;
 
     private Integer itemsRemaining;
 
-    public Hardware(String name, String code, Double price, String type, Integer itemsRemaining) {
+    public Hardware(String name, String code, Double price, Type type, Integer itemsRemaining) {
         this.name = name;
         this.code = code;
         this.price = price;

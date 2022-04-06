@@ -11,6 +11,7 @@ import java.util.List;
  * Implemented requests:
  * GET http://localhost:8080/hardware
  * GET http://localhost:8080/hardware/?code
+ * POST http://localhost:8080/hardware
  */
 @RestController
 @RequestMapping("hardware")
@@ -33,7 +34,6 @@ public class HardwareController {
 
     @PostMapping
     public ResponseEntity<HardwareDTO> save(@Valid @RequestBody final HardwareCommand command) {
-        System.out.println("[INFO] Controller layer: Command:");
         System.out.println(command.toString());
         return hardwareService.save(command)
                 .map(
@@ -43,5 +43,6 @@ public class HardwareController {
                         () -> ResponseEntity.status(HttpStatus.CONFLICT).build()
                 );
     }
+
 
 }

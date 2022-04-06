@@ -16,8 +16,8 @@ public class HardwareCommand {
     @PositiveOrZero(message = "Number of remaining items must be entered as a positive integer")
     private Double price;
 
-    @NotBlank(message = "Type must be entered")
-    private String type;
+    @NotNull(message = "Type must be entered")
+    private Type type;
 
     @NotNull(message = "Items remaining must be entered")
     @PositiveOrZero(message = "Number of remaining items must be entered as a positive integer")
@@ -31,12 +31,12 @@ public class HardwareCommand {
         return code;
     }
 
-    public Double getPrice() {
-        return price;
+    public Type getType() {
+        return type;
     }
 
-    public String getType() {
-        return type;
+    public Double getPrice() {
+        return price;
     }
 
     public Integer getItemsRemaining() {
