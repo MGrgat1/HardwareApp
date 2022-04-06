@@ -33,7 +33,7 @@ public class HardwareRepositoryImpl implements HardwareRepository {
     }
 
     @Override
-    public Optional<Hardware> save(@Valid @RequestBody final HardwareCommand command) {
+    public Optional<Hardware> save(final HardwareCommand command) {
         Hardware hardwareToAdd = command.getHardware();
 
         if (findByCode(hardwareToAdd.getCode()).isPresent()){
@@ -44,4 +44,8 @@ public class HardwareRepositoryImpl implements HardwareRepository {
         }
     }
 
+    public void deleteByCode(String code){
+        Optional<Hardware> hardwareToDelete = findByCode(code);
+        hardwareToDelete.ifPresent(object -> hardware.remove(object));
+    }
 }

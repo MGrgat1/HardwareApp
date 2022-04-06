@@ -12,5 +12,7 @@ public interface HardwareRepository {
 
     Optional<Hardware> findByCode(String code);
 
-    Optional<Hardware> save(@Valid @RequestBody HardwareCommand command);
+    Optional<Hardware> save(HardwareCommand command);
+
+    void deleteByCode(String code);
 }

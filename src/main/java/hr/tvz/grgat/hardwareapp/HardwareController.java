@@ -27,8 +27,8 @@ public class HardwareController {
         return hardwareService.findAll();
     }
 
-    @GetMapping(params="code")
-    public HardwareDTO getHardwareByCode(@RequestParam final String code){
+    @GetMapping("/{code}")
+    public HardwareDTO getHardwareByCode(@PathVariable final String code){
         return hardwareService.findByCode(code);
     }
 
@@ -44,5 +44,9 @@ public class HardwareController {
                 );
     }
 
-
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/{code}")
+    public void delete(@PathVariable String code) {
+        hardwareService.deleteByCode(code);
+    }
 }

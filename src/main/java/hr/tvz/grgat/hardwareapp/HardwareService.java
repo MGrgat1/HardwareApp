@@ -1,5 +1,6 @@
 package hr.tvz.grgat.hardwareapp;
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.validation.Valid;
@@ -12,5 +13,7 @@ public interface HardwareService {
 
     HardwareDTO findByCode(String code);
 
-    Optional<HardwareDTO> save(@Valid @RequestBody HardwareCommand command);
+    Optional<HardwareDTO> save(HardwareCommand command);
+
+    void deleteByCode(String code);
 }
