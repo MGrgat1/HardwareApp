@@ -27,13 +27,17 @@ public class HardwareServiceImpl implements HardwareService {
     }
 
     private HardwareDTO mapToDTO(final Hardware hardware) {
-        return new HardwareDTO(hardware.getName(), hardware.getPrice());
+        return new HardwareDTO(hardware.getCode(), hardware.getName(), hardware.getPrice());
     }
 
     public Optional<HardwareDTO> save(final HardwareCommand command) {
         System.out.println("[INFO] Service layer: Command:");
         System.out.println(command.toString());
         return hardwareRepository.save(command).map(this::mapToDTO);
+    }
+
+    public Optional<HardwareDTO> update(String code, HardwareCommand command){
+        return hardwareRepository.update(code, command).map(this::mapToDTO);
     }
 
     public void deleteByCode(String code) {

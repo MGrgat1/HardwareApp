@@ -15,4 +15,6 @@ public interface HardwareRepository {
     Optional<Hardware> save(HardwareCommand command);
 
     void deleteByCode(String code);
+
+    Optional<Hardware> update(String code, HardwareCommand command);
 }

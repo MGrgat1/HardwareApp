@@ -13,13 +13,13 @@ import static hr.tvz.grgat.hardwareapp.Type.LAPTOP;
 public class HardwareRepositoryImpl implements HardwareRepository {
 
     private List<Hardware> hardware = new ArrayList<Hardware>(){{
-        add(new Hardware("INTEL Pentium Gold", "G6405", 533.07,CPU, 25));
-        add(new Hardware("Intel Core i3", "10100", 969.00, CPU, 500));
-        add(new Hardware("Intel Core i3", "10300", 1234.00, CPU, 25));
-        add(new Hardware("Kingston FURY Beast", "KNGF4567", 1999.0, LAPTOP, 320));
-        add(new Hardware("ASUS E210MA-GJ208TS", "ASE210", 1899.0, LAPTOP, 120));
-        add(new Hardware("ACER Aspire 3", "ACEN400", 2649.0, LAPTOP, 150));
-        add(new Hardware("ACER Swift 1", "ACES500", 2699.0, LAPTOP, 90));
+        add(new Hardware("AAA", "INTEL Pentium Gold", 533.07,CPU, 25));
+        add(new Hardware("AAB", "Intel Core i3", 969.00, CPU, 500));
+        add(new Hardware("AAC", "Intel Core i3",1234.00, CPU, 25));
+        add(new Hardware("ABA", "Kingston FURY Beast", 1999.0, LAPTOP, 320));
+        add(new Hardware("ABB", "ASUS E210MA-GJ208TS", 1899.0, LAPTOP, 120));
+        add(new Hardware("ABC", "ACER Aspire 3",  2649.0, LAPTOP, 150));
+        add(new Hardware("ACA","ACER Swift 1",2699.0, LAPTOP, 90));
     }};
 
     @Override
@@ -36,6 +36,7 @@ public class HardwareRepositoryImpl implements HardwareRepository {
     public Optional<Hardware> save(final HardwareCommand command) {
         Hardware hardwareToAdd = command.getHardware();
 
+        // if hardware to add is already present, then return empty, else add it to the hardware list
         if (findByCode(hardwareToAdd.getCode()).isPresent()){
             return Optional.empty();
         } else {
@@ -47,5 +48,21 @@ public class HardwareRepositoryImpl implements HardwareRepository {
     public void deleteByCode(String code){
         Optional<Hardware> hardwareToDelete = findByCode(code);
         hardwareToDelete.ifPresent(object -> hardware.remove(object));
+    }
+
+    public Optional<Hardware> update(String code, HardwareCommand command){
+        Hardware updatedHardware = command.getHardware();
+        Optional<Hardware> hardwareToBeUpdatedOptional = findByCode(code);
+
+        // if the hardware that needs to be updated is present, update it, else insert the update at the end of the list
+        if (hardwareToBeUpdatedOptional.isPresent()){
+            Hardware hardwareToBeUpdated = hardwareToBeUpdatedOptional.get();
+            hardwareToBeUpdated.setPrice(updatedHardware.getPrice());       //update the price
+            hardware.add(hardware.indexOf(hardwareToBeUpdated), hardwareToBeUpdated);       //insert the updated hardware back into its position in the list
+            return Optional.of(hardwareToBeUpdated);
+        } else {
+            return Optional.empty();
+        }
+
     }
 }

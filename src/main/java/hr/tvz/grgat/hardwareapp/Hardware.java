@@ -5,9 +5,9 @@ import lombok.Data;
 @Data
 public class Hardware {
 
-    private String name;
-
     private String code;
+
+    private String name;
 
     private Double price;
 
@@ -15,9 +15,9 @@ public class Hardware {
 
     private Integer itemsRemaining;
 
-    public Hardware(String name, String code, Double price, Type type, Integer itemsRemaining) {
-        this.name = name;
+    public Hardware(String code, String name, Double price, Type type, Integer itemsRemaining) {
         this.code = code;
+        this.name = name;
         this.price = price;
         this.type = type;
         this.itemsRemaining = itemsRemaining;

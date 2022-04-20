@@ -10,11 +10,14 @@ import java.util.List;
 /***
  * Implemented requests:
  * GET http://localhost:8080/hardware
- * GET http://localhost:8080/hardware/?code
+ * GET http://localhost:8080/hardware/code
  * POST http://localhost:8080/hardware
+ * PUT http://localhost:8080/hardware/code
+ * DELETE http://localhost:8080/hardware/code
  */
 @RestController
 @RequestMapping("hardware")
+@CrossOrigin(origins = "http://localhost:4200")
 public class HardwareController {
     private final HardwareService hardwareService;
 
@@ -43,6 +46,22 @@ public class HardwareController {
                         () -> ResponseEntity.status(HttpStatus.CONFLICT).build()
                 );
     }
+
+    //PUT Mapping ide preko RequestParam
+    //unese se samo varijabla koja se treba promijeniti
+
+    @PutMapping("/{code}")
+    public ResponseEntity<HardwareDTO> update(@PathVariable String code, @Valid @RequestBody final HardwareCommand command) {
+        System.out.println("[INFO] Entered PutMapping, command:" + command.toString());
+        return hardwareService.update(code, command)
+                .map(
+                        hardwareDTO -> ResponseEntity.status(HttpStatus.OK).body(hardwareDTO)
+                )
+                .orElseGet(
+                        () -> ResponseEntity.status(HttpStatus.NOT_FOUND).build()
+                );
+    }
+
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{code}")

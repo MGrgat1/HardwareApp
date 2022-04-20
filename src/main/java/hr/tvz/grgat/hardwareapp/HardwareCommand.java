@@ -6,11 +6,11 @@ import javax.validation.constraints.PositiveOrZero;
 
 public class HardwareCommand {
 
-    @NotBlank(message = "Name must be entered")
-    private String name;
-
     @NotBlank(message = "Code must be entered")
     private String code;
+
+    @NotBlank(message = "Name must be entered")
+    private String name;
 
     @NotNull(message = "Price must be entered")
     @PositiveOrZero(message = "Number of remaining items must be entered as a positive integer")
@@ -47,16 +47,16 @@ public class HardwareCommand {
      * Creates a hardware object based on the entered input, and returns it
      */
     public Hardware getHardware() {
-        return new Hardware(name, code, price, type, itemsRemaining);
+        return new Hardware(code, name, price, type, itemsRemaining);
     }
 
     @Override
     public String toString() {
         return "HardwareCommand{" +
-                "name='" + name + '\'' +
-                ", code='" + code + '\'' +
+                "code='" + code + '\'' +
+                ", name='" + name + '\'' +
                 ", price=" + price +
-                ", type='" + type + '\'' +
+                ", type=" + type +
                 ", itemsRemaining=" + itemsRemaining +
                 '}';
     }
