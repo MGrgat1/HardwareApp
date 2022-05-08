@@ -1,9 +1,7 @@
 package hr.tvz.grgat.hardwareapp;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
-import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -11,6 +9,9 @@ import java.util.stream.Collectors;
 @Service
 public class HardwareServiceImpl implements HardwareService {
 
+    /**
+     * HardwareReponsitory is not created within HardwareService. Instead it's injected through the constructor
+     */
     private final HardwareRepository hardwareRepository;
 
     public HardwareServiceImpl(HardwareRepository hardwareRepository) {
@@ -24,6 +25,18 @@ public class HardwareServiceImpl implements HardwareService {
 
     public HardwareDTO findByCode(final String code) {
         return hardwareRepository.findByCode(code).map(this::mapToDTO).orElse(null);
+    }
+
+    @Override
+    public List<HardwareDTO> findByInterval(final int min, final int max) {
+        Optional<List<Hardware>> optionalList = hardwareRepository.findByInterval(min, max);
+        if(optionalList.isPresent()) {
+            List<Hardware> intervalList = optionalList.get();
+            List <HardwareDTO> intervalListDTO = intervalList.stream().map(this::mapToDTO).toList();
+            return intervalListDTO;
+        } else {
+            return null;
+        }
     }
 
     private HardwareDTO mapToDTO(final Hardware hardware) {

@@ -47,7 +47,7 @@ public class HardwareCommand {
      * Creates a hardware object based on the entered input, and returns it
      */
     public Hardware getHardware() {
-        return new Hardware(code, name, price, type, itemsRemaining);
+        return new Hardware(0, code, name, price, type, itemsRemaining);
     }
 
     @Override

@@ -13,6 +13,8 @@ public interface HardwareService {
 
     HardwareDTO findByCode(String code);
 
+    List<HardwareDTO> findByInterval(int min, int max);
+
     Optional<HardwareDTO> save(HardwareCommand command);
 
     void deleteByCode(String code);
