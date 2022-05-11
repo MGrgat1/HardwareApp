@@ -88,7 +88,6 @@ public class HardwareController {
      */
     @PostMapping
     public ResponseEntity<HardwareDTO> save(@Valid @RequestBody final HardwareCommand command) {
-        System.out.println(command.toString());
         return hardwareService.save(command)
                 .map(
                         hardwareDTO -> ResponseEntity.status(HttpStatus.CREATED).body(hardwareDTO)

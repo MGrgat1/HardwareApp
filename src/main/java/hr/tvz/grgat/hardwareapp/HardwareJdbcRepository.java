@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.*;
 
 @Repository
-public class JdbcHardwareRepository implements HardwareRepository {
+public class HardwareJdbcRepository implements HardwareRepository {
 
     private static final String SELECT_ALL =
             "SELECT * FROM hardware";
@@ -24,7 +24,7 @@ public class JdbcHardwareRepository implements HardwareRepository {
      * hardware,using id as the primary key.
      * @param jdbc
      */
-    public JdbcHardwareRepository(JdbcTemplate jdbc) {
+    public HardwareJdbcRepository(JdbcTemplate jdbc) {
         this.jdbc = jdbc;
         this.inserter = new SimpleJdbcInsert(jdbc)
                 .withTableName("hardware")

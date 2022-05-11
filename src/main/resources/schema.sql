@@ -1,8 +1,17 @@
-create table if not exists hardware (
-    id identity,
-    code varchar(10) not null unique,
-    hardware_name varchar(100) not null,
-    price int not null,
-    hardware_type varchar(100) not null,
-    items_remaining int not null
+CREATE TABLE IF NOT EXISTS HARDWARE (
+    ID IDENTITY,
+    CODE VARCHAR(10) NOT NULL UNIQUE,
+    HARDWARE_NAME VARCHAR(100) NOT NULL,
+    PRICE INT,
+    HARDWARE_TYPE VARCHAR(100) NOT NULL,
+    ITEMS_REMAINING INT
+    );
+
+CREATE TABLE IF NOT EXISTS REVIEWS (
+    ID IDENTITY,
+    RATING  VARCHAR(100) NOT NULL,
+    TITLE VARCHAR(100) NOT NULL,
+    TEXT VARCHAR(100),
+    HARDWARE_ID INT NOT NULL,
+    FOREIGN KEY (HARDWARE_ID) REFERENCES HARDWARE(ID)
     );

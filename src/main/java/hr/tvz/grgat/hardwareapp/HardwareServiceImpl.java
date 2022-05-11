@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 public class HardwareServiceImpl implements HardwareService {
 
     /**
-     * HardwareReponsitory is not created within HardwareService. Instead it's injected through the constructor
+     * HardwareRepository is not created within HardwareService. Instead it's injected through the constructor
      */
     private final HardwareRepository hardwareRepository;
 
@@ -32,8 +32,7 @@ public class HardwareServiceImpl implements HardwareService {
         Optional<List<Hardware>> optionalList = hardwareRepository.findByInterval(min, max);
         if(optionalList.isPresent()) {
             List<Hardware> intervalList = optionalList.get();
-            List <HardwareDTO> intervalListDTO = intervalList.stream().map(this::mapToDTO).toList();
-            return intervalListDTO;
+            return intervalList.stream().map(this::mapToDTO).toList();
         } else {
             return null;
         }
@@ -44,8 +43,6 @@ public class HardwareServiceImpl implements HardwareService {
     }
 
     public Optional<HardwareDTO> save(final HardwareCommand command) {
-        System.out.println("[INFO] Service layer: Command:");
-        System.out.println(command.toString());
         return hardwareRepository.save(command).map(this::mapToDTO);
     }
 

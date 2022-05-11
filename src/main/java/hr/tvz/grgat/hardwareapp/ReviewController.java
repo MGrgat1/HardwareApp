@@ -28,4 +28,9 @@ public class ReviewController {
         return reviewService.findAll();
     }
 
+    @GetMapping("/{code}")
+    public List<ReviewDTO> getAllReviewsByHardwareCode(@PathVariable final String code){
+        return reviewService.findAllByHardwareCode(code);
+    }
+
 }

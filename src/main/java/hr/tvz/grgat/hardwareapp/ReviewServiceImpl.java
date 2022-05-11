@@ -8,15 +8,20 @@ import java.util.stream.Collectors;
 @Service
 public class ReviewServiceImpl implements ReviewService {
 
-    private final ReviewRepository reviewRepository;
+    private final ReviewJpaRepository reviewJpaRepository;
 
-    public ReviewServiceImpl(ReviewRepository reviewRepository) {
-        this.reviewRepository = reviewRepository;
+    public ReviewServiceImpl(ReviewJpaRepository reviewJpaRepository) {
+        this.reviewJpaRepository = reviewJpaRepository;
     }
 
     @Override
     public List<ReviewDTO> findAll() {
-        return reviewRepository.findAll().stream().map(this::mapToDTO).collect(Collectors.toList());
+        return reviewJpaRepository.findAll().stream().map(this::mapToDTO).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ReviewDTO> findAllByHardwareCode(String code) {
+        return reviewJpaRepository.findAllByHardware_Code(code).stream().map(this::mapToDTO).collect(Collectors.toList());
     }
 
     private ReviewDTO mapToDTO(final Review review) {
