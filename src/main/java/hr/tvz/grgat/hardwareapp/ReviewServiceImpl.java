@@ -24,6 +24,11 @@ public class ReviewServiceImpl implements ReviewService {
         return reviewJpaRepository.findAllByHardware_Code(code).stream().map(this::mapToDTO).collect(Collectors.toList());
     }
 
+    @Override
+    public List<ReviewDTO> findAllByTextSnippet(String textSnippet) {
+        return reviewJpaRepository.findAllByTextContaining(textSnippet).stream().map(this::mapToDTO).collect(Collectors.toList());
+    }
+
     private ReviewDTO mapToDTO(final Review review) {
         return new ReviewDTO(review.getRating(), review.getTitle(), review.getText());
     }
