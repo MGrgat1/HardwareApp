@@ -1,5 +1,9 @@
-package hr.tvz.grgat.hardwareapp;
+package hr.tvz.grgat.hardwareapp.hardware.service;
 
+import hr.tvz.grgat.hardwareapp.hardware.hardware.Hardware;
+import hr.tvz.grgat.hardwareapp.hardware.command.HardwareCommand;
+import hr.tvz.grgat.hardwareapp.hardware.dto.HardwareDTO;
+import hr.tvz.grgat.hardwareapp.hardware.repository.HardwareRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -39,7 +43,7 @@ public class HardwareServiceImpl implements HardwareService {
     }
 
     private HardwareDTO mapToDTO(final Hardware hardware) {
-        return new HardwareDTO(hardware.getCode(), hardware.getName(), hardware.getPrice());
+        return new HardwareDTO(hardware.getName(), hardware.getPrice(), hardware.getCode());
     }
 
     public Optional<HardwareDTO> save(final HardwareCommand command) {

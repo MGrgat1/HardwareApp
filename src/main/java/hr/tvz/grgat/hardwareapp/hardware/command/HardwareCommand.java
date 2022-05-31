@@ -1,4 +1,7 @@
-package hr.tvz.grgat.hardwareapp;
+package hr.tvz.grgat.hardwareapp.hardware.command;
+
+import hr.tvz.grgat.hardwareapp.hardware.hardware.Hardware;
+import hr.tvz.grgat.hardwareapp.hardware.hardware.Type;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -6,22 +9,23 @@ import javax.validation.constraints.PositiveOrZero;
 
 public class HardwareCommand {
 
+    @NotBlank(message = "Name must be entered")
+    private String name;
+
+    @NotNull(message = "Type must be entered")
+    private Type type;
+
     @NotBlank(message = "Code must be entered")
     private String code;
 
-    @NotBlank(message = "Name must be entered")
-    private String name;
+    @NotNull(message = "Stock must be entered")
+    @PositiveOrZero(message = "Stock must be entered as a positive integer")
+    private Integer stock;
 
     @NotNull(message = "Price must be entered")
     @PositiveOrZero(message = "Number of remaining items must be entered as a positive integer")
     private Double price;
 
-    @NotNull(message = "Type must be entered")
-    private Type type;
-
-    @NotNull(message = "Items remaining must be entered")
-    @PositiveOrZero(message = "Number of remaining items must be entered as a positive integer")
-    private Integer itemsRemaining;
 
     public String getName() {
         return name;
@@ -39,15 +43,15 @@ public class HardwareCommand {
         return price;
     }
 
-    public Integer getItemsRemaining() {
-        return itemsRemaining;
+    public Integer getStock() {
+        return stock;
     }
 
     /**
      * Creates a hardware object based on the entered input, and returns it
      */
     public Hardware getHardware() {
-        return new Hardware(code, name, price, type, itemsRemaining);
+        return new Hardware(code, name, price, type, stock);
     }
 
 
@@ -59,7 +63,7 @@ public class HardwareCommand {
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", type=" + type +
-                ", itemsRemaining=" + itemsRemaining +
+                ", stock=" + stock +
                 '}';
     }
 }

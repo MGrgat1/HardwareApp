@@ -1,9 +1,8 @@
-package hr.tvz.grgat.hardwareapp;
+package hr.tvz.grgat.hardwareapp.hardware.service;
 
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
+import hr.tvz.grgat.hardwareapp.hardware.command.HardwareCommand;
+import hr.tvz.grgat.hardwareapp.hardware.dto.HardwareDTO;
 
-import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 

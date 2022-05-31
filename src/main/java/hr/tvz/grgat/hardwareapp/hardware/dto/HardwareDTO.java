@@ -1,18 +1,16 @@
-package hr.tvz.grgat.hardwareapp;
+package hr.tvz.grgat.hardwareapp.hardware.dto;
 
 import lombok.Data;
 
 @Data
 public class HardwareDTO {
-
-    private String code;
     private String name;
     private Double price;
+    private String code;
 
-
-    public HardwareDTO(String code, String name, Double price) {
-        this.code = code;
+    public HardwareDTO(String name, Double price, String code) {
         this.name = name;
         this.price = price;
+        this.code = code;
     }
 }

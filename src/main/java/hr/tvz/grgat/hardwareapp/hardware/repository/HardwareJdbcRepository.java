@@ -1,5 +1,8 @@
-package hr.tvz.grgat.hardwareapp;
+package hr.tvz.grgat.hardwareapp.hardware.repository;
 
+import hr.tvz.grgat.hardwareapp.hardware.hardware.Hardware;
+import hr.tvz.grgat.hardwareapp.hardware.command.HardwareCommand;
+import hr.tvz.grgat.hardwareapp.hardware.hardware.Type;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
@@ -48,14 +51,14 @@ public class HardwareJdbcRepository implements HardwareRepository {
     }
 
     /**
-     * Select all hardware objects in the table whose items_remaining value is within a certain range
+     * Select all hardware objects in the table whose stock value is within a certain range
      * @param min
      * @param max
      * @return
      */
     @Override
     public Optional<List<Hardware>> findByInterval(final int min, final int max) {
-        String intervalQuery = "SELECT * FROM hardware WHERE items_remaining < " + max + "AND items_remaining > " + min;
+        String intervalQuery = "SELECT * FROM hardware WHERE stock < " + max + "AND stock > " + min;
         try {
             return Optional.of(
                     jdbc.query(intervalQuery, this::mapRowToHardware)
@@ -95,7 +98,7 @@ public class HardwareJdbcRepository implements HardwareRepository {
         values.put("hardware_name", hardware.getName());            //'name' is already reserved
         values.put("price", hardware.getPrice());
         values.put("hardware_type", hardware.getType().toString());            //'type' is already reserved
-        values.put("items_remaining", hardware.getItemsRemaining());
+        values.put("stock", hardware.getStock());
 
         return inserter.executeAndReturnKey(values).longValue();
     }
@@ -107,12 +110,12 @@ public class HardwareJdbcRepository implements HardwareRepository {
                 "hardware_name = ?, " +
                 "price = ?, " +
                 "hardware_type = ?, " +
-                "items_remaining = ?" +
+                "stock = ?" +
                     "WHERE code = ?"),
                 updatedHardware.getName(),
                 updatedHardware.getPrice(),
                 updatedHardware.getType().toString(),
-                updatedHardware.getItemsRemaining()
+                updatedHardware.getStock()
         );
 
     if(executed > 0) {
@@ -124,7 +127,12 @@ public class HardwareJdbcRepository implements HardwareRepository {
     }
 
     public void deleteByCode(String code){
+        if (findByCode(code).isPresent()) {
+            Hardware hardwareToBeDeleted = findByCode(code).get();
+            jdbc.update("DELETE FROM reviews WHERE hardware_id = ?", hardwareToBeDeleted.getId());
+        }
         jdbc.update("DELETE FROM hardware WHERE code = ?", code);
+
     }
 
     /**
@@ -141,7 +149,7 @@ public class HardwareJdbcRepository implements HardwareRepository {
                 rs.getString("hardware_name"),
                 rs.getDouble("price"),
                 Type.valueOf(rs.getString("hardware_type")),
-                rs.getInt("items_remaining")
+                rs.getInt("stock")
         );
     }
 }

@@ -1,11 +1,9 @@
-package hr.tvz.grgat.hardwareapp;
+package hr.tvz.grgat.hardwareapp.reviews.controller;
 
-import hr.tvz.grgat.hardwareapp.ReviewService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import hr.tvz.grgat.hardwareapp.reviews.dto.ReviewDTO;
+import hr.tvz.grgat.hardwareapp.reviews.service.ReviewService;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 /***
@@ -13,7 +11,7 @@ import java.util.List;
  * GET http://localhost:8080/reviews
  */
 @RestController
-@RequestMapping("reviews")
+@RequestMapping("review")
 @CrossOrigin(origins = "http://localhost:4200")
 public class ReviewController {
 
@@ -29,11 +27,10 @@ public class ReviewController {
     }
 
 
-    @GetMapping("/{code}")
-    public List<ReviewDTO> getAllReviewsByHardwareCode(@PathVariable final String code){
-        return reviewService.findAllByHardwareCode(code);
+    @GetMapping(params = "hardwareCode")
+    public List<ReviewDTO> getAllReviewsByHardwareCode(@RequestParam final String hardwareCode){
+        return reviewService.findAllByHardwareCode(hardwareCode);
     }
-
 
     /*
     @GetMapping("/text/{text}")

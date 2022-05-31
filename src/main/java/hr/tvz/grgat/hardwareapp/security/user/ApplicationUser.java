@@ -10,6 +10,10 @@ public class ApplicationUser implements Serializable {
     @Serial
     private static final long serialVersionUID = 8533039291044343363L;
 
+    /**
+     * ApplicationUser contains information about the username, the password, and the authorities granted to the user
+     * (such as the admin authority).
+     */
     private String username;
     private String password;
     private List<SimpleGrantedAuthority> authorities;

@@ -31,6 +31,11 @@ public class JwtServiceImpl implements JwtService {
     @Value("${security.authentication.jwt.base64-secret}")
     private String secretKey;
 
+    /**
+     * If the token is still valid, extract user data from the token and save it in the applicationUser object.
+     * @param token
+     * @return
+     */
     @Override
     public boolean authenticate(String token) {
         if (isJwtInvalid(token)) {
@@ -43,9 +48,15 @@ public class JwtServiceImpl implements JwtService {
         return true;
     }
 
+    /**
+     * This will be called during the login process when the entered password matches the password in the database.
+     * Creates a jwt (java web token) that contains information - authorities, username, expiration date, date of issue, etc.
+     * @param user
+     * @return
+     */
     @Override
     public String createJwt(User user) {
-        Instant expiration = Instant.now().plusSeconds(accessTokenValiditySeconds);
+        Instant expiration = Instant.now().plusSeconds(accessTokenValiditySeconds);         //this is defined in application.properties
         String authorities = user.getAuthorities()
                 .stream()
                 .map(Authority::getName)
@@ -53,7 +64,7 @@ public class JwtServiceImpl implements JwtService {
 
         return Jwts
                 .builder()
-                .signWith(SignatureAlgorithm.HS512, secretKey)
+                .signWith(SignatureAlgorithm.HS512, secretKey)                              //this is defined in application.properties
                 .setSubject(user.getUsername())
                 .setExpiration(new Date(expiration.toEpochMilli()))
                 .setIssuedAt(new Date())
@@ -61,6 +72,11 @@ public class JwtServiceImpl implements JwtService {
                 .compact();
     }
 
+    /**
+     * Parse the jwt to see if it's invalid.
+     * @param jwtToken
+     * @return
+     */
     private boolean isJwtInvalid(String jwtToken) {
         try {
             Jwts.parser().setSigningKey(secretKey).parseClaimsJws(jwtToken);

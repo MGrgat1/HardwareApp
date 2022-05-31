@@ -1,4 +1,6 @@
-package hr.tvz.grgat.hardwareapp;
+package hr.tvz.grgat.hardwareapp.hardware.hardware;
+
+import hr.tvz.grgat.hardwareapp.reviews.review.Review;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -26,8 +28,8 @@ public class Hardware implements Serializable {
     @Enumerated(EnumType.STRING)
     private Type type;
 
-    @Column(name= "ITEMS_REMAINING")
-    private Integer itemsRemaining;
+    @Column(name= "STOCK")
+    private Integer stock;
 
 
     /**
@@ -58,24 +60,24 @@ public class Hardware implements Serializable {
     /**
      * The hardware constructor used in HardwareJdbcRepository
      */
-    public Hardware(long id, String code, String name, Double price, Type type, Integer itemsRemaining) {
+    public Hardware(long id, String code, String name, Double price, Type type, Integer stock) {
         this.id = id;
         this.code = code;
         this.name = name;
         this.price = price;
         this.type = type;
-        this.itemsRemaining = itemsRemaining;
+        this.stock = stock;
     }
 
     /**
      * The hardware constructor used in HardwareCommand
      */
-    public Hardware(String code, String name, Double price, Type type, Integer itemsRemaining) {
+    public Hardware(String code, String name, Double price, Type type, Integer stock) {
         this.code = code;
         this.name = name;
         this.price = price;
         this.type = type;
-        this.itemsRemaining = itemsRemaining;
+        this.stock = stock;
     }
 
     public String getCode() {
@@ -110,11 +112,11 @@ public class Hardware implements Serializable {
         this.type = type;
     }
 
-    public Integer getItemsRemaining() {
-        return itemsRemaining;
+    public Integer getStock() {
+        return stock;
     }
 
-    public void setItemsRemaining(Integer itemsRemaining) {
-        this.itemsRemaining = itemsRemaining;
+    public void setStock(Integer stock) {
+        this.stock = stock;
     }
 }

@@ -1,7 +1,8 @@
-package hr.tvz.grgat.hardwareapp;
+package hr.tvz.grgat.hardwareapp.reviews.service;
+
+import hr.tvz.grgat.hardwareapp.reviews.dto.ReviewDTO;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface ReviewService {
 

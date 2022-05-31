@@ -1,5 +1,6 @@
-package hr.tvz.grgat.hardwareapp;
+package hr.tvz.grgat.hardwareapp.reviews.dto;
 
+import hr.tvz.grgat.hardwareapp.reviews.review.Rating;
 import lombok.Data;
 
 @Data

@@ -1,8 +1,8 @@
-package hr.tvz.grgat.hardwareapp;
+package hr.tvz.grgat.hardwareapp.hardware.repository;
 
-import org.springframework.web.bind.annotation.RequestBody;
+import hr.tvz.grgat.hardwareapp.hardware.hardware.Hardware;
+import hr.tvz.grgat.hardwareapp.hardware.command.HardwareCommand;
 
-import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
