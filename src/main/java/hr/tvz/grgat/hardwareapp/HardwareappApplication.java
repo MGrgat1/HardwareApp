@@ -1,4 +1,4 @@
-package hr.tvz.grgat.hardwareapp.hardware;
+package hr.tvz.grgat.hardwareapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

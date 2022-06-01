@@ -1,7 +1,4 @@
-package hr.tvz.grgat.hardwareapp.hardware.command;
-
-import hr.tvz.grgat.hardwareapp.hardware.hardware.Hardware;
-import hr.tvz.grgat.hardwareapp.hardware.hardware.Type;
+package hr.tvz.grgat.hardwareapp;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -9,22 +6,24 @@ import javax.validation.constraints.PositiveOrZero;
 
 public class HardwareCommand {
 
+
+    @NotBlank(message = "Code must be entered")
+    private String code;
+
     @NotBlank(message = "Name must be entered")
     private String name;
 
     @NotNull(message = "Type must be entered")
     private Type type;
 
-    @NotBlank(message = "Code must be entered")
-    private String code;
+    @NotNull(message = "Price must be entered")
+    @PositiveOrZero(message = "Number of remaining items must be entered as a positive integer")
+    private Double price;
+
 
     @NotNull(message = "Stock must be entered")
     @PositiveOrZero(message = "Stock must be entered as a positive integer")
     private Integer stock;
-
-    @NotNull(message = "Price must be entered")
-    @PositiveOrZero(message = "Number of remaining items must be entered as a positive integer")
-    private Double price;
 
 
     public String getName() {
@@ -54,7 +53,13 @@ public class HardwareCommand {
         return new Hardware(code, name, price, type, stock);
     }
 
-
+    public HardwareCommand(String code, String name, Type type, Double price, Integer stock) {
+        this.code = code;
+        this.name = name;
+        this.type = type;
+        this.price = price;
+        this.stock = stock;
+    }
 
     @Override
     public String toString() {

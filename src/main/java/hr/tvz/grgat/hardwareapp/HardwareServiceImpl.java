@@ -1,9 +1,5 @@
-package hr.tvz.grgat.hardwareapp.hardware.service;
+package hr.tvz.grgat.hardwareapp;
 
-import hr.tvz.grgat.hardwareapp.hardware.hardware.Hardware;
-import hr.tvz.grgat.hardwareapp.hardware.command.HardwareCommand;
-import hr.tvz.grgat.hardwareapp.hardware.dto.HardwareDTO;
-import hr.tvz.grgat.hardwareapp.hardware.repository.HardwareRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

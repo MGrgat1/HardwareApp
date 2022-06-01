@@ -1,7 +1,5 @@
-package hr.tvz.grgat.hardwareapp.reviews.controller;
+package hr.tvz.grgat.hardwareapp;
 
-import hr.tvz.grgat.hardwareapp.reviews.dto.ReviewDTO;
-import hr.tvz.grgat.hardwareapp.reviews.service.ReviewService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

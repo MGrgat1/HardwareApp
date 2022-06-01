@@ -1,8 +1,5 @@
-package hr.tvz.grgat.hardwareapp.hardware.repository;
+package hr.tvz.grgat.hardwareapp;
 
-import hr.tvz.grgat.hardwareapp.hardware.hardware.Hardware;
-import hr.tvz.grgat.hardwareapp.hardware.command.HardwareCommand;
-import hr.tvz.grgat.hardwareapp.hardware.hardware.Type;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;

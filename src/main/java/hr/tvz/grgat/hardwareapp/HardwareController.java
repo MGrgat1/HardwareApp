@@ -1,8 +1,5 @@
-package hr.tvz.grgat.hardwareapp.hardware.controller;
+package hr.tvz.grgat.hardwareapp;
 
-import hr.tvz.grgat.hardwareapp.hardware.command.HardwareCommand;
-import hr.tvz.grgat.hardwareapp.hardware.dto.HardwareDTO;
-import hr.tvz.grgat.hardwareapp.hardware.service.HardwareService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

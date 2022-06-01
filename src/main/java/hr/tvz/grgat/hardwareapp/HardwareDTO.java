@@ -1,4 +1,4 @@
-package hr.tvz.grgat.hardwareapp.hardware.dto;
+package hr.tvz.grgat.hardwareapp;
 
 import lombok.Data;
 

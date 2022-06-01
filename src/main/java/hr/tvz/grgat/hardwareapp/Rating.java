@@ -1,4 +1,4 @@
-package hr.tvz.grgat.hardwareapp.reviews.review;
+package hr.tvz.grgat.hardwareapp;
 
 public enum Rating {
     ZERO_STAR,

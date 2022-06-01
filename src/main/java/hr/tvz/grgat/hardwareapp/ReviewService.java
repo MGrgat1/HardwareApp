@@ -1,6 +1,6 @@
-package hr.tvz.grgat.hardwareapp.reviews.service;
+package hr.tvz.grgat.hardwareapp;
 
-import hr.tvz.grgat.hardwareapp.reviews.dto.ReviewDTO;
+import hr.tvz.grgat.hardwareapp.ReviewDTO;
 
 import java.util.List;
 

@@ -1,6 +1,4 @@
-package hr.tvz.grgat.hardwareapp.reviews.review;
-
-import hr.tvz.grgat.hardwareapp.hardware.hardware.Hardware;
+package hr.tvz.grgat.hardwareapp;
 
 import javax.persistence.*;
 import java.io.Serializable;

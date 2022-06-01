@@ -1,6 +1,5 @@
-package hr.tvz.grgat.hardwareapp.reviews.repository;
+package hr.tvz.grgat.hardwareapp;
 
-import hr.tvz.grgat.hardwareapp.reviews.review.Review;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

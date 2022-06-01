@@ -1,8 +1,5 @@
-package hr.tvz.grgat.hardwareapp.reviews.service;
+package hr.tvz.grgat.hardwareapp;
 
-import hr.tvz.grgat.hardwareapp.reviews.review.Review;
-import hr.tvz.grgat.hardwareapp.reviews.dto.ReviewDTO;
-import hr.tvz.grgat.hardwareapp.reviews.repository.ReviewJpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

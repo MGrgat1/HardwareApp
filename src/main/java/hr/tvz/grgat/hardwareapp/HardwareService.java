@@ -1,7 +1,7 @@
-package hr.tvz.grgat.hardwareapp.hardware.service;
+package hr.tvz.grgat.hardwareapp;
 
-import hr.tvz.grgat.hardwareapp.hardware.command.HardwareCommand;
-import hr.tvz.grgat.hardwareapp.hardware.dto.HardwareDTO;
+import hr.tvz.grgat.hardwareapp.HardwareCommand;
+import hr.tvz.grgat.hardwareapp.HardwareDTO;
 
 import java.util.List;
 import java.util.Optional;
